@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { FiUpload, FiSave, FiSend, FiPlus, FiTrash } from 'react-icons/fi';
 import { useSearchParams } from 'next/navigation';
 
@@ -31,7 +31,15 @@ const services = [
   'M&A, Healthcare & IT Consulting'
 ];
 
-export default function PostJob() {
+export default function PostJobPage() {
+  return (
+    <Suspense fallback={<div>loading....</div>}>
+     <PostJobForm />
+    </Suspense>
+  )
+}
+
+function PostJobForm() {
   const searchParams = useSearchParams();
 
   const intialFormState = {
